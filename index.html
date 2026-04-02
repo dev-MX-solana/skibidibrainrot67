@@ -129,7 +129,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(ellipse at center, rgba(10,0,32,0.85) 0%, rgba(0,0,0,0.92) 70%);
+      background: radial-gradient(ellipse at center, rgba(10,0,32,0.4) 0%, rgba(0,0,0,0.6) 70%);
       position: relative;
       z-index: 2;
     }
@@ -256,7 +256,9 @@
 
     /* ===== LORE SECTION ===== */
     #lore {
-      background: linear-gradient(180deg, #000 0%, #030010 50%, #000 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(3,0,16,0.85) 50%, rgba(0,0,0,0.85) 100%);
+      position: relative;
+      z-index: 2;
     }
     .lore-text {
       max-width: 800px;
@@ -283,7 +285,7 @@
     }
 
     /* ===== TOKENOMICS ===== */
-    #tokenomics { background: #000; }
+    #tokenomics { background: rgba(0,0,0,0.85); position: relative; z-index: 2; }
     .tknomics-grid {
       display: flex;
       flex-wrap: wrap;
@@ -329,7 +331,7 @@
     }
 
     /* ===== ROADMAP ===== */
-    #roadmap { background: linear-gradient(180deg, #000 0%, #050005 50%, #000 100%); }
+    #roadmap { background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(5,0,5,0.85) 50%, rgba(0,0,0,0.85) 100%); position: relative; z-index: 2; }
     .roadmap-container {
       max-width: 800px;
       margin: 0 auto;
@@ -389,7 +391,7 @@
     }
 
     /* ===== CTA ===== */
-    #cta { background: radial-gradient(ellipse at center, #0a0010 0%, #000 70%); }
+    #cta { background: radial-gradient(ellipse at center, rgba(10,0,16,0.85) 0%, rgba(0,0,0,0.85) 70%); position: relative; z-index: 2; }
     .buy-btn {
       display: inline-block;
       padding: 20px 60px;
