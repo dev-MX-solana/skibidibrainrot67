@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$SKIBIDIBRAINROT67 — for those who ate the crayons AND made it</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --neon: #00ff41;
+      --purple: #bf00ff;
+      --yellow: #ffff00;
+      --black: #000;
+    }
+
+    /* Custom cursor */
+    * { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='28' font-size='28'>🧠</text></svg>") 16 16, auto; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #000;
+      color: var(--neon);
+      font-family: 'Bangers', cursive;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CRT Scanlines overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.15) 2px,
+        rgba(0,0,0,0.15) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* RGB background pulse */
+    @keyframes bgRgb {
+      0%   { background-color: #000005; }
+      16%  { background-color: #050000; }
+      33%  { background-color: #000500; }
+      50%  { background-color: #050005; }
+      66%  { background-color: #030005; }
+      83%  { background-color: #000303; }
+      100% { background-color: #000005; }
+    }
+    body { animation: bgRgb 3s infinite; }
+
+    /* ===== FLOATING EMOJIS ===== */
+    .emoji-rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
+    .floaty {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.8; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      position: relative;
+      z-index: 10;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, #0a0020 0%, #000 70%);
+    }
+
+    .mascot {
+      font-size: 8rem;
+      animation: mascotBounce 0.5s infinite alternate, mascotSpin 8s linear infinite;
+      display: block;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 30px var(--purple));
+    }
+    @keyframes mascotBounce {
+      from { transform: scale(1) translateY(0); }
+      to   { transform: scale(1.15) translateY(-10px); }
+    }
+    @keyframes mascotSpin {
+      0%   { filter: drop-shadow(0 0 30px var(--purple)) hue-rotate(0deg); }
+      100% { filter: drop-shadow(0 0 30px var(--neon)) hue-rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-family: 'Bangers', cursive;
+      letter-spacing: 4px;
+      animation: glitch 2s infinite, colorCycle 1s infinite, shake 0.15s infinite;
+      text-shadow:
+        0 0 10px var(--neon),
+        0 0 30px var(--neon),
+        0 0 60px var(--neon),
+        3px 0 var(--purple),
+        -3px 0 #ff0000;
+      line-height: 1;
+    }
+    @keyframes glitch {
+      0%   { clip-path: inset(0 0 95% 0); transform: translate(-5px, 0); }
+      5%   { clip-path: inset(0 0 95% 0); transform: translate(5px, 0); }
+      10%  { clip-path: none; transform: translate(0, 0); }
+      92%  { clip-path: none; transform: translate(0,0); }
+      94%  { clip-path: inset(50% 0 30% 0); transform: translate(-3px, 0); color: var(--purple); }
+      96%  { clip-path: inset(50% 0 30% 0); transform: translate(3px, 0); color: var(--yellow); }
+      100% { clip-path: none; transform: translate(0, 0); color: var(--neon); }
+    }
+    @keyframes colorCycle {
+      0%   { color: var(--neon); }
+      33%  { color: var(--yellow); }
+      66%  { color: var(--purple); }
+      100% { color: var(--neon); }
+    }
+    @keyframes shake {
+      0%   { transform: translate(1px, 1px); }
+      25%  { transform: translate(-1px, -1px); }
+      50%  { transform: translate(1px, -1px); }
+      75%  { transform: translate(-1px, 1px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .tagline {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-family: 'Comic Neue', cursive;
+      color: var(--yellow);
+      margin-top: 20px;
+      animation: blink 0.8s step-end infinite;
+      text-shadow: 0 0 10px var(--yellow), 0 0 20px orange;
+      letter-spacing: 2px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .ca-bar {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #0a0a0a;
+      border: 2px solid var(--neon);
+      color: var(--neon);
+      font-size: 1.1rem;
+      font-family: 'Comic Neue', cursive;
+      letter-spacing: 1px;
+      animation: borderPulse 1s infinite;
+      word-break: break-all;
+      max-width: 600px;
+    }
+    @keyframes borderPulse {
+      0%,100% { border-color: var(--neon); box-shadow: 0 0 10px var(--neon); }
+      50%      { border-color: var(--purple); box-shadow: 0 0 20px var(--purple); }
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-family: 'Bangers', cursive;
+      letter-spacing: 5px;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::before, .section-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .section-title::before {
+      color: var(--purple);
+      animation: glitchBefore 3s infinite;
+    }
+    .section-title::after {
+      color: #ff0000;
+      animation: glitchAfter 3s infinite;
+    }
+    @keyframes glitchBefore {
+      0%,90%,100% { clip-path: none; transform: none; }
+      91% { clip-path: inset(20% 0 50% 0); transform: translate(-4px, 0); }
+      93% { clip-path: inset(70% 0 10% 0); transform: translate(4px, 0); }
+    }
+    @keyframes glitchAfter {
+      0%,85%,100% { clip-path: none; transform: none; }
+      86% { clip-path: inset(40% 0 40% 0); transform: translate(4px, 0); }
+      88% { clip-path: inset(0 0 80% 0); transform: translate(-4px, 0); }
+    }
+
+    /* ===== LORE SECTION ===== */
+    #lore {
+      background: linear-gradient(180deg, #000 0%, #030010 50%, #000 100%);
+    }
+    .lore-text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: 'Comic Neue', cursive;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      line-height: 2;
+      color: var(--neon);
+      text-shadow: 0 0 5px var(--neon);
+      text-align: left;
+      padding: 30px;
+      border-left: 4px solid var(--purple);
+      background: rgba(0, 255, 65, 0.03);
+      animation: textFlicker 4s infinite;
+    }
+    .lore-text .highlight {
+      color: var(--yellow);
+      font-size: 1.2em;
+      animation: colorCycle 2s infinite;
+    }
+    @keyframes textFlicker {
+      0%,98%,100% { opacity: 1; }
+      99%          { opacity: 0.8; }
+    }
+
+    /* ===== TOKENOMICS ===== */
+    #tokenomics { background: #000; }
+    .tknomics-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .tknomics-card {
+      flex: 1 1 180px;
+      max-width: 220px;
+      background: rgba(0,255,65,0.05);
+      border: 2px solid var(--neon);
+      padding: 30px 20px;
+      animation: cardPulse 1.5s ease-in-out infinite alternate;
+      position: relative;
+      overflow: hidden;
+    }
+    .tknomics-card:nth-child(2) { animation-delay: 0.3s; border-color: var(--purple); }
+    .tknomics-card:nth-child(3) { animation-delay: 0.6s; border-color: var(--yellow); }
+    .tknomics-card:nth-child(4) { animation-delay: 0.9s; border-color: #ff0066; }
+    .tknomics-card:nth-child(5) { animation-delay: 1.2s; border-color: #00ffff; }
+    @keyframes cardPulse {
+      from { transform: scale(1) translateY(0); box-shadow: 0 0 10px var(--neon); }
+      to   { transform: scale(1.05) translateY(-5px); box-shadow: 0 0 30px var(--purple); }
+    }
+    .tknomics-card .card-emoji { font-size: 3rem; display: block; margin-bottom: 10px; animation: emojiWiggle 0.5s infinite; }
+    @keyframes emojiWiggle { 0%,100% {transform:rotate(-5deg);} 50% {transform:rotate(5deg);} }
+    .tknomics-card .card-label {
+      font-family: 'Comic Neue', cursive;
+      font-size: 0.8rem;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .tknomics-card .card-value {
+      font-size: 1.4rem;
+      color: var(--neon);
+      font-family: 'Bangers', cursive;
+      letter-spacing: 1px;
+      word-break: break-all;
+    }
+
+    /* ===== ROADMAP ===== */
+    #roadmap { background: linear-gradient(180deg, #000 0%, #050005 50%, #000 100%); }
+    .roadmap-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .roadmap-container::before {
+      content: '';
+      position: absolute;
+      left: 40px;
+      top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--neon), var(--purple), var(--yellow), #ff0066);
+      animation: linePulse 2s infinite;
+    }
+    @keyframes linePulse { 0%,100% {opacity:1;} 50% {opacity:0.3;} }
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding-left: 80px;
+      position: relative;
+      text-align: left;
+    }
+    .roadmap-dot {
+      position: absolute;
+      left: 26px;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--neon);
+      border: 3px solid #000;
+      animation: dotPulse 1s infinite;
+      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .roadmap-item:nth-child(2) .roadmap-dot { background: var(--purple); animation-delay: 0.25s; }
+    .roadmap-item:nth-child(3) .roadmap-dot { background: var(--yellow); animation-delay: 0.5s; }
+    .roadmap-item:nth-child(4) .roadmap-dot { background: #ff0066; animation-delay: 0.75s; }
+    @keyframes dotPulse { 0%,100% {transform:scale(1);} 50% {transform:scale(1.4);} }
+    .roadmap-content h3 {
+      font-size: 1.8rem;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 2px;
+      color: var(--neon);
+    }
+    .roadmap-item:nth-child(2) .roadmap-content h3 { color: var(--purple); }
+    .roadmap-item:nth-child(3) .roadmap-content h3 { color: var(--yellow); }
+    .roadmap-item:nth-child(4) .roadmap-content h3 { color: #ff0066; }
+    .roadmap-content p {
+      font-family: 'Comic Neue', cursive;
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 600px;
+    }
+
+    /* ===== CTA ===== */
+    #cta { background: radial-gradient(ellipse at center, #0a0010 0%, #000 70%); }
+    .buy-btn {
+      display: inline-block;
+      padding: 20px 60px;
+      font-size: 2.5rem;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 4px;
+      color: #000;
+      background: var(--neon);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      animation: btnPulse 0.5s infinite alternate, btnShake 0.1s infinite;
+      text-shadow: none;
+      box-shadow: 0 0 30px var(--neon), 0 0 60px var(--neon), inset 0 0 10px rgba(255,255,255,0.3);
+      margin: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .buy-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: btnShine 1.5s infinite;
+    }
+    @keyframes btnShine {
+      0%   { transform: rotate(0deg) translateX(-100%); }
+      100% { transform: rotate(0deg) translateX(100%); }
+    }
+    @keyframes btnPulse {
+      from { background: var(--neon); box-shadow: 0 0 30px var(--neon); }
+      to   { background: var(--yellow); box-shadow: 0 0 60px var(--yellow); }
+    }
+    @keyframes btnShake {
+      0%   { transform: translate(1px, 0) rotate(-0.5deg); }
+      50%  { transform: translate(-1px, 0) rotate(0.5deg); }
+      100% { transform: translate(0, 1px) rotate(0deg); }
+    }
+    .ca-display {
+      font-family: 'Comic Neue', cursive;
+      font-size: 1rem;
+      color: var(--neon);
+      margin-top: 20px;
+      padding: 15px 25px;
+      border: 2px dashed var(--purple);
+      display: inline-block;
+      animation: borderPulse 1.5s infinite;
+      max-width: 90vw;
+      word-break: break-all;
+    }
+    .cta-disclaimer {
+      font-family: 'Comic Neue', cursive;
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: 'Comic Neue', cursive;
+      color: #333;
+      font-size: 0.9rem;
+      border-top: 1px solid #111;
+      position: relative;
+      z-index: 10;
+    }
+    footer span { color: var(--neon); animation: blink 1s infinite; }
+
+    /* ===== SCROLL MARQUEE ===== */
+    .marquee-bar {
+      background: var(--purple);
+      color: #000;
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 100;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marqueeScroll 15s linear infinite;
+    }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .tknomics-card { flex: 1 1 140px; }
+      .roadmap-container::before { left: 20px; }
+      .roadmap-dot { left: 6px; }
+      .roadmap-item { padding-left: 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating emojis -->
+<div class="emoji-rain" id="emojiRain"></div>
+
+<!-- ======= HERO ======= -->
+<section id="hero">
+  <span class="mascot">🧠💀🚽🧠💀🚽</span>
+  <h1 class="hero-title">$SKIBIDIBRAINROT67</h1>
+  <p class="tagline">when ur so brainrotted u forgot to be sad 🧠</p>
+  <div class="ca-bar">CA: TBA — stay brainrotted ser 🍼</div>
+</section>
+
+<div class="marquee-bar">
+  <span class="marquee-inner">
+    🧠 SKIBIDI &nbsp;&nbsp; 💀 OHIO RIZZ &nbsp;&nbsp; 🚽 NO CAP FR FR &nbsp;&nbsp; 💚 GIGABRAIN &nbsp;&nbsp; 🍼 ATE CRAYONS &nbsp;&nbsp; 🔥 LP BURNED &nbsp;&nbsp; 🧠 SKIBIDI &nbsp;&nbsp; 💀 OHIO RIZZ &nbsp;&nbsp; 🚽 NO CAP FR FR &nbsp;&nbsp; 💚 GIGABRAIN &nbsp;&nbsp; 🍼 ATE CRAYONS &nbsp;&nbsp; 🔥 LP BURNED &nbsp;&nbsp; 🧠 SKIBIDI &nbsp;&nbsp; 💀 OHIO RIZZ
+  </span>
+</div>
+
+<!-- ======= LORE ======= -->
+<section id="lore">
+  <h2 class="section-title" data-text="📖 THE LORE 📖">📖 THE LORE 📖</h2>
+  <div class="lore-text">
+    in 2019, a child watched his first skibidi toilet video.<br>
+    something broke inside him that day. <span class="highlight">irreversibly.</span><br><br>
+    by 2024 he had consumed <span class="highlight">847,000 hours</span> of brainrot content.<br>
+    his neurons fired exclusively in rizz and ohio jokes.<br><br>
+    then one day, he discovered crypto.<br>
+    he bought the top. held through <span class="highlight">-97%</span>. said <em>"no cap fr fr this is bussin"</em><br>
+    <span class="highlight">AND IT WENT x10000.</span><br><br>
+    doctors are speechless. his parents are in shambles.<br>
+    turns out the <span class="highlight">ultimate alpha</span> was being too brainrotted to panic sell.<br><br>
+    <strong style="color:var(--neon);font-size:1.3em;">$SKIBIDIBRAINROT67</strong> — for those who ate the crayons AND made it. 🍼
+  </div>
+</section>
+
+<div class="marquee-bar" style="background:var(--neon);">
+  <span class="marquee-inner" style="animation-direction:reverse;animation-duration:10s;">
+    💰 SUPPLY: 67,000,000,067 &nbsp;&nbsp; 🔥 TAX: 0/0 (he failed math) &nbsp;&nbsp; 💀 LP: BURNED &nbsp;&nbsp; 🌀 DEV: 0% (lost to ohio) &nbsp;&nbsp; gngngngngngngn &nbsp;&nbsp; 💰 SUPPLY: 67,000,000,067 &nbsp;&nbsp; 🔥 TAX: 0/0 (he failed math) &nbsp;&nbsp; 💀 LP: BURNED &nbsp;&nbsp; 🌀 DEV: 0% (lost to ohio) &nbsp;&nbsp; gngngngngngngn
+  </span>
+</div>
+
+<!-- ======= TOKENOMICS ======= -->
+<section id="tokenomics">
+  <h2 class="section-title" data-text="💰 TOKENOMICS 💰">💰 TOKENOMICS 💰</h2>
+  <div class="tknomics-grid">
+    <div class="tknomics-card">
+      <span class="card-emoji">🧮</span>
+      <div class="card-label">Supply</div>
+      <div class="card-value">67,000,000,067</div>
+    </div>
+    <div class="tknomics-card">
+      <span class="card-emoji">📉</span>
+      <div class="card-label">Tax</div>
+      <div class="card-value">0/0<br><small style="font-size:0.7rem;color:#888;">(he failed math)</small></div>
+    </div>
+    <div class="tknomics-card">
+      <span class="card-emoji">🔥</span>
+      <div class="card-label">Liquidity</div>
+      <div class="card-value">BURNED<br><small style="font-size:0.7rem;color:#888;">(he thought it was an NFT)</small></div>
+    </div>
+    <div class="tknomics-card">
+      <span class="card-emoji">🌀</span>
+      <div class="card-label">Dev Wallet</div>
+      <div class="card-value">0%<br><small style="font-size:0.7rem;color:#888;">(lost to ohio)</small></div>
+    </div>
+    <div class="tknomics-card">
+      <span class="card-emoji">🧠</span>
+      <div class="card-label">Utility</div>
+      <div class="card-value">gngngngn gngngngn</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ROADMAP ======= -->
+<section id="roadmap">
+  <h2 class="section-title" data-text="🗺️ ROADMAP 🗺️">🗺️ ROADMAP 🗺️</h2>
+  <div class="roadmap-container">
+    <div class="roadmap-item">
+      <div class="roadmap-dot">🍼</div>
+      <div class="roadmap-content">
+        <h3>PHASE 1 — launch (accidentally)</h3>
+        <p>nobody knows how. wallet was open. it just... happened. ser.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">🧠</div>
+      <div class="roadmap-content">
+        <h3>PHASE 2 — CT discovers us somehow</h3>
+        <p>one retweet from an influencer who was also brainrotted. that's it. that's the plan.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">💚</div>
+      <div class="roadmap-content">
+        <h3>PHASE 3 — GIGABRAIN ACTIVATED</h3>
+        <p>charts go vertical. doctors concerned. parents crying. we keep holding.</p>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-dot">🚀</div>
+      <div class="roadmap-content">
+        <h3>PHASE 4 — WE ALL MAKE IT (or we don't)</h3>
+        <p>gngngngngngngngngngngngngngngngngngngngngngngngn...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar" style="background:#ff0066;color:#fff;">
+  <span class="marquee-inner" style="animation-duration:8s;">
+    🚀 BUY NOW 🚀 &nbsp;&nbsp; 🧠 HOLD FOREVER 🧠 &nbsp;&nbsp; 💀 NO PANIC SELL 💀 &nbsp;&nbsp; 🍼 EAT CRAYONS 🍼 &nbsp;&nbsp; 💚 GIGABRAIN 💚 &nbsp;&nbsp; 🚽 SKIBIDI 🚽 &nbsp;&nbsp; 🔥 BURN IT 🔥 &nbsp;&nbsp; 🌀 OHIO 🌀 &nbsp;&nbsp; 🚀 BUY NOW 🚀 &nbsp;&nbsp; 🧠 HOLD FOREVER 🧠 &nbsp;&nbsp; 💀 NO PANIC SELL 💀 &nbsp;&nbsp; 🍼 EAT CRAYONS 🍼
+  </span>
+</div>
+
+<!-- ======= CTA ======= -->
+<section id="cta">
+  <h2 class="section-title" data-text="💸 BUY OR CRY 💸">💸 BUY OR CRY 💸</h2>
+  <p style="font-family:'Comic Neue',cursive;color:#aaa;margin-bottom:30px;font-size:1.1rem;">
+    the child is watching you. he didn't panic sell at -97%.<br>
+    what's your excuse? 🧠
+  </p>
+  <a href="https://raydium.io" target="_blank" class="buy-btn">🧠 BUY $SKIBIDIBRAINROT67 🧠</a>
+  <br>
+  <div class="ca-display">
+    📋 CA: TBA — follow for launch announcement<br>
+    <small style="color:#666;">copy this. tattoo it on your wrist. fr fr no cap.</small>
+  </div>
+  <div class="ca-disclaimer">
+    Not financial advice. We are a meme. We ate crayons in kindergarten and we're proud of it.
+    Do your own research (or don't, like our dev). 🍼
+  </div>
+</section>
+
+<footer>
+  <span>$SKIBIDIBRAINROT67</span> — 2024 — made by someone too brainrotted to care<br>
+  <small style="color:#222;">not financial advice | just vibes | gngngngn</small>
+</footer>
+
+<script>
+  // Generate floating emojis
+  const emojis = ['🧠','💀','🚽','🍼','💚','🔥','🌀','⚡','💊','🎮','👾','🕹️','💯','🤯','👀','🫡','🧪','🪄'];
+  const rain = document.getElementById('emojiRain');
+  
+  function spawnEmoji() {
+    const el = document.createElement('div');
+    el.className = 'floaty';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (1 + Math.random() * 2) + 'rem';
+    el.style.animationDuration = (4 + Math.random() * 8) + 's';
+    el.style.animationDelay = (Math.random() * 2) + 's';
+    rain.appendChild(el);
+    setTimeout(() => el.remove(), 12000);
+  }
+  
+  setInterval(spawnEmoji, 300);
+  // Spawn a bunch immediately
+  for (let i = 0; i < 20; i++) setTimeout(spawnEmoji, i * 100);
+
+  // Title RGB cycle
+  const title = document.querySelector('.hero-title');
+  const colors = ['#00ff41','#bf00ff','#ffff00','#ff0066','#00ffff','#ff6600'];
+  let ci = 0;
+  setInterval(() => {
+    ci = (ci + 1) % colors.length;
+    title.style.textShadow = `0 0 10px ${colors[ci]}, 0 0 30px ${colors[ci]}, 0 0 60px ${colors[ci]}, 3px 0 ${colors[(ci+2)%colors.length]}, -3px 0 ${colors[(ci+4)%colors.length]}`;
+  }, 200);
+
+  // Random glitch flashes on the page
+  setInterval(() => {
+    if (Math.random() < 0.1) {
+      document.body.style.filter = 'hue-rotate(' + (Math.random()*360) + 'deg)';
+      setTimeout(() => document.body.style.filter = '', 80);
+    }
+  }, 500);
+</script>
+
+</body>
+</html>
